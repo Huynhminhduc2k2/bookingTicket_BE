@@ -1,0 +1,7 @@
+# dependencies
+/node_modules
+.env
+/dist
+# add package-lock.json to .gitignore
+package-lock.json
+.DS_Store
