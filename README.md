@@ -78,7 +78,11 @@ Run this command to build docker environment.
 ```bash
 docker-compose up --build -d
 ```
+#### \*NOTE: if windows don't, please change your host Docker in file `C:\Windows\System32\drivers\etc\host`, set localhost to 127.0.0.1 as:
 
+```
+127.0.0.1 localhost
+```
 ## Run
 
 ### 1. Install Node.js
