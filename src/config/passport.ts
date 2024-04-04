@@ -1,7 +1,7 @@
 import User from "../models/user.model";
 import config from "./config";
 import { tokenTypes } from "./tokens";
-const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 
 const jwtOptions = {
   secretOrKey: config.jwt.secret,

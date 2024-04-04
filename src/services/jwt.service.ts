@@ -70,7 +70,7 @@ const verifyToken = async (token, type) => {
  */
 const generateAuthTokens = async (user) => {
   const accessToken = generateToken(user._id, tokenTypes.ACCESS);
-  await saveToken(accessToken, user._id, tokenTypes.ACCESS,);
+  await saveToken(accessToken, user._id, tokenTypes.ACCESS, null);
   return accessToken;
 };
 
