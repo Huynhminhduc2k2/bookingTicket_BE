@@ -1,7 +1,7 @@
 import config from "./config";
 import Logger from "../utils/logger";
+import morgan from "morgan";
 
-const morgan = require("morgan");
 const logger = new Logger();
 morgan.token("message", (req, res) => res.locals.errorMessage || "");
 
