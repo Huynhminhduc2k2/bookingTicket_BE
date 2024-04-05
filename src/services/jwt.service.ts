@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import moment from "moment";
 import ApiError from "../utils/ApiError";
-import config from "src/config/config";
+import config from "../config/config";
 import httpStatus from "http-status";
 import { getUserByEmail } from "./user.service";
 import Token from "../models/token.model";

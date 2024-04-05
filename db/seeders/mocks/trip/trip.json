@@ -1,0 +1,232 @@
+[
+  {
+    "tripName": "Hanoi to Da Nang",
+    "route": "Hanoi - Da Nang",
+    "departureTime": "2024-05-01T04:00:00.000Z",
+    "arrivalTime": "2024-05-01T10:00:00.000Z",
+    "availableSeats": 30,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 100
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 80
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Non-refundable"
+  },
+  {
+    "tripName": "Saigon to Phu Quoc",
+    "route": "Ho Chi Minh City - Phu Quoc",
+    "departureTime": "2024-05-02T06:00:00.000Z",
+    "arrivalTime": "2024-05-02T08:30:00.000Z",
+    "availableSeats": 40,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 150
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 120
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Refundable"
+  },
+  {
+    "tripName": "Da Nang to Nha Trang",
+    "route": "Da Nang - Nha Trang",
+    "departureTime": "2024-05-03T09:00:00.000Z",
+    "arrivalTime": "2024-05-03T15:00:00.000Z",
+    "availableSeats": 25,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 110
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 90
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Non-refundable"
+  },
+  {
+    "tripName": "Hanoi to Hue",
+    "route": "Hanoi - Hue",
+    "departureTime": "2024-05-04T05:00:00.000Z",
+    "arrivalTime": "2024-05-04T11:30:00.000Z",
+    "availableSeats": 30,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 105
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 85
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Refundable"
+  },
+  {
+    "tripName": "Can Tho to Da Lat",
+    "route": "Can Tho - Da Lat",
+    "departureTime": "2024-05-05T07:00:00.000Z",
+    "arrivalTime": "2024-05-05T13:00:00.000Z",
+    "availableSeats": 35,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 130
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 100
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Non-refundable"
+  },
+  {
+    "tripName": "Ho Chi Minh City to Hoi An",
+    "route": "Ho Chi Minh City - Hoi An",
+    "departureTime": "2024-05-06T08:00:00.000Z",
+    "arrivalTime": "2024-05-06T14:00:00.000Z",
+    "availableSeats": 40,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 120
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 95
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Refundable"
+  },
+  {
+    "tripName": "Hanoi to Sapa",
+    "route": "Hanoi - Sapa",
+    "departureTime": "2024-05-07T03:30:00.000Z",
+    "arrivalTime": "2024-05-07T09:30:00.000Z",
+    "availableSeats": 30,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 95
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 75
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Non-refundable"
+  },
+  {
+    "tripName": "Da Nang to Ho Chi Minh City",
+    "route": "Da Nang - Ho Chi Minh City",
+    "departureTime": "2024-05-08T10:00:00.000Z",
+    "arrivalTime": "2024-05-08T16:00:00.000Z",
+    "availableSeats": 40,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 115
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 95
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Refundable"
+  },
+  {
+    "tripName": "Nha Trang to Hue",
+    "route": "Nha Trang - Hue",
+    "departureTime": "2024-05-09T06:30:00.000Z",
+    "arrivalTime": "2024-05-09T12:30:00.000Z",
+    "availableSeats": 35,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 105
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 85
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Non-refundable"
+  },
+  {
+    "tripName": "Ho Chi Minh City to Mui Ne",
+    "route": "Ho Chi Minh City - Mui Ne",
+    "departureTime": "2024-05-10T09:30:00.000Z",
+    "arrivalTime": "2024-05-10T12:00:00.000Z",
+    "availableSeats": 30,
+    "seats": [
+      {
+        "seatNumber": 1,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 110
+      },
+      {
+        "seatNumber": 2,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 90
+      }
+    ],
+    "totalPrice": 0,
+    "policy": "Refundable"
+  }
+]

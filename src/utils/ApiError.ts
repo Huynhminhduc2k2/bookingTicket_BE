@@ -1,9 +1,9 @@
 class ApiError extends Error {
+  statusCode: any;
+  isOperational: boolean;
   constructor(statusCode, message, isOperational = true, stack = "") {
     super(message);
-    // @ts-ignore
     this.statusCode = statusCode;
-    // @ts-ignore
 
     this.isOperational = isOperational;
     if (stack) {

@@ -6,38 +6,30 @@ import { roles } from "../config/roles";
 // import { UNAVAILABLE_FOR_LEGAL_REASONS } from "http-status";
 
 export interface IUser extends Document {
-  userName: string;
   email: string;
+  phone: string;
   password: string;
-  age: number;
+  address: {
+    address: string;
+    address_name: string;
+  };
+  job: string;
+  dob: Date;
+  avatar: string;
   role: string;
   isPasswordMatch: (password: string) => Promise<boolean>;
 }
 
 interface UserModel extends Model<IUser> {
   isEmailTaken: (email: string, excludeUserId?: string) => Promise<boolean>;
-  isAddressTaken: (address: string, excludeUserId?: string) => Promise<boolean>;
-  isUsernameTaken: (
-    userName: string,
-    excludeUserId?: string,
-  ) => Promise<boolean>;
+  isPhoneTaken: (phone: string, excludeUserId?: string) => Promise<boolean>;
 }
 
 const userSchema = new mongoose.Schema<IUser, UserModel>(
   {
-    userName: {
-      type: String,
-      required: true,
-      trim: true,
-      unique: false,
-    },
-    age: {
-      type: Number,
-      required: true,
-    },
     email: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
       lowercase: true,
       validate(value: string) {
@@ -50,8 +42,43 @@ const userSchema = new mongoose.Schema<IUser, UserModel>(
       type: String,
       required: true,
       trim: true,
-      minlength: 8,
+      minlength: 6,
       private: true, // used by the toJSON plugin
+    },
+    phone: {
+      type: String,
+      required: true,
+      trim: true,
+      validate(value: string) {
+        if (!validator.isMobilePhone(value)) {
+          throw new Error("Invalid phone number");
+        }
+      }
+    },
+    address: {
+      address: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      address_name: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+    },
+    job: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    dob: {
+      type: Date,
+      required: false,
+    },
+    avatar: {
+      type: String,
+      required: false,
     },
     role: {
       type: String,
@@ -76,11 +103,11 @@ userSchema.statics.isEmailTaken = async function (
   return !!user;
 };
 
-userSchema.statics.isUsernameTaken = async function (
-  userName: string,
+userSchema.statics.isPhoneTaken = async function (
+  phone: string,
   excludeUserId?: string,
 ) {
-  const user = await this.findOne({ userName, _id: { $ne: excludeUserId } });
+  const user = await this.findOne({ phone, _id: { $ne: excludeUserId } });
   return !!user;
 };
 
