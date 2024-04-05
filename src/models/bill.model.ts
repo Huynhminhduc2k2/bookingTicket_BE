@@ -1,5 +1,5 @@
 import { model, Schema, Types } from "mongoose";
-import { paymentMethod, paymentStatus } from "src/constant/payment";
+import { paymentMethod, paymentStatus } from "../constant/payment";
 
 export interface IBill {
   slug: string;

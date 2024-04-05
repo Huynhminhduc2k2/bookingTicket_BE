@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-
+import { seatType } from "../constant/trip";
 export interface ITrip {
   tripName: string;
   route: string;
@@ -28,7 +28,7 @@ const tripSchema = new Schema<ITrip>(
     seats: {
       type: [{
         seatNumber: { type: Number, required: true },
-        seatType: { type: String, required: true },
+        seatType: { type: String, enum: seatType, required: true },
         seatStatus: { type: String, required: true },
         price: { type: Number, required: true },
       }], required: true

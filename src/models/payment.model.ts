@@ -1,5 +1,5 @@
 import { model, Schema, Types } from "mongoose";
-import { paymentGateway, paymentMethod, paymentStatus } from "src/constant/payment";
+import { paymentGateway, paymentMethod, paymentStatus } from "../constant/payment";
 
 export interface IPayment {
   bookingInfo: {
