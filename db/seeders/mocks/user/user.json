@@ -1,0 +1,56 @@
+[
+  {
+    "email": "admin@gmail.com",
+    "password": "123456",
+    "phone": "11234567890",
+    "dob": "1990-01-01T00:00:00.000Z",
+    "role": "admin"
+  },
+  {
+    "email": "ducan172002@gmail.com",
+    "password": "123456",
+    "phone": "09876543210",
+    "address": [
+      {
+        "address": "456 Center Rd",
+        "address_name": "Work"
+      },
+      {
+        "address": "123 Main St",
+        "address_name": "Home"
+      }
+    ],
+    "job": "Graphic Designer",
+    "dob": "1985-05-15T00:00:00.000Z",
+    "avatar": "avatar2.jpg",
+    "role": "admin"
+  },
+  {
+    "email": "sam.smith@example.net",
+    "password": "123456",
+    "phone": "12345678901",
+    "address": [
+      {
+        "address": "789 Side Ave",
+        "address_name": "Office"
+      }
+    ],
+    "job": "Marketing Specialist",
+    "dob": "1992-07-22T00:00:00.000Z",
+    "role": "user"
+  },
+  {
+    "email": "alex.jordan@example.org",
+    "password": "123456",
+    "phone": "10987654321",
+    "job": "Data Analyst",
+    "role": "user"
+  },
+  {
+    "email": "casey.reyes@example.com",
+    "password": "123456",
+    "phone": "13216549870",
+    "job": "Project Manager",
+    "role": "user"
+  }
+]

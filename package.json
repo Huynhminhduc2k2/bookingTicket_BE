@@ -16,18 +16,26 @@
     "format": "yarn pretty && yarn lint",
     "pretty": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\" --end-of-line lf",
     "pretty:check": "prettier --check \"./**/*.{ts,tsx,js,jsx,json}\" --end-of-line lf",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts' --timeout 10000"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts' --timeout 10000",
+    "seed:init": "md-seed init",
+    "seed": "md-seed run",
+    "seed:drop": "md-seed run --drop"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "@faker-js/faker": "^7.6.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/chai": "^4.3.4",
     "@types/express": "^4.17.21",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.14.1",
     "@types/supertest": "^2.0.12",
+    "@types/validator": "^13.11.9",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
@@ -55,6 +63,7 @@
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "mongoose": "^6.10.0",
+    "mongoose-data-seed": "^2.1.6",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
     "passport": "^0.6.0",
@@ -68,5 +77,9 @@
   },
   "engines": {
     "node": ">=16.0.0"
+  },
+  "mdSeed": {
+    "seedersFolder": "./db/seeders",
+    "customSeederTemplate": "./db/md-seed-template.ejs"
   }
 }
