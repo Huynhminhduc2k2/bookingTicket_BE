@@ -1,0 +1,33 @@
+const paymentMethod = {
+    ATM: "atm",
+    E_WALLET: "e_wallet",
+};
+
+const paymentStatus = [
+    'PENDING',
+    'PAID',
+    'REFUNDED',
+    'FAILED',
+    'CANCELLED',
+    'EXPIRED',
+    'REQUESTED',
+    'COMPLETED',
+    'PARTIAL',
+    'PROCESSING',
+    'WAITING',
+    'REJECTED',
+    'ACCEPTED',
+];
+
+const paymentGateway = {
+    PAYPAL: "paypal",
+    MOMO: "momo",
+    ZALO_PAY: "zalo_pay",
+    SHOPEE_PAY: "shopee_pay",
+    VN_PAY: "vn_pay",
+    FUTA_PAY: "futa_pay",
+    ATM_DOMESTIC: "atm_domestic",
+    ATM_INTERNATIONAL: "atm_international",
+};
+
+export { paymentMethod, paymentStatus, paymentGateway };

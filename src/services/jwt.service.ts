@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import moment from "moment";
 import ApiError from "../utils/ApiError";
-import config from "src/config/config";
+import config from "../config/config";
 import httpStatus from "http-status";
 import { getUserByEmail } from "./user.service";
 import Token from "../models/token.model";
@@ -70,7 +70,7 @@ const verifyToken = async (token, type) => {
  */
 const generateAuthTokens = async (user) => {
   const accessToken = generateToken(user._id, tokenTypes.ACCESS);
-  await saveToken(accessToken, user._id, tokenTypes.ACCESS,);
+  await saveToken(accessToken, user._id, tokenTypes.ACCESS, null);
   return accessToken;
 };
 

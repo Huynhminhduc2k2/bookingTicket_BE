@@ -1,0 +1,32 @@
+[
+    {
+        "slug": "bill-20240412-001",
+        "booking": {
+            "bookingId": "ObjectId('63f1e1d3fc13ae1b10b6214e')",
+            "route": "Ha Noi to Da Nang",
+            "price": "1500000 VND",
+            "seat": "2024-04-15T14:00:00.000Z",
+            "user_id": "ObjectId('63f1e1e2fc13ae1b10b62567')",
+            "user": {
+                "name": "Le Anh Tuan",
+                "email": "letuan@example.com",
+                "phone": "+840912345678"
+            },
+            "startDate": "2024-04-15T09:00:00.000Z"
+        },
+        "branch": {
+            "branchName": "Northern Transport Co.",
+            "phone": "+8402435791011",
+            "branchAddress": "123 Dong Da, Ha Noi, Viet Nam",
+            "taxCode": "VN123456789"
+        },
+        "payment": {
+            "paymentMethod": "atm",
+            "paymentStatus": "paid",
+            "paymentDate": "2024-04-10T12:00:00.000Z",
+            "paymentAmount": 1500000
+        },
+        "createdAt": "2024-04-10T15:00:00.000Z",
+        "updatedAt": "2024-04-12T09:00:00.000Z"
+    }
+]
