@@ -4,23 +4,41 @@
     "route": "Hanoi - Da Nang",
     "departureTime": "2024-05-01T04:00:00.000Z",
     "arrivalTime": "2024-05-01T10:00:00.000Z",
-    "availableSeats": 30,
+    "availableSeats": 26,
     "seats": [
       {
         "seatNumber": 1,
-        "seatType": "VIP",
-        "seatStatus": "available",
-        "price": 100
+        "seatType": "Standard",
+        "seatStatus": "booked",
+        "price": 50
       },
       {
         "seatNumber": 2,
         "seatType": "Standard",
-        "seatStatus": "available",
-        "price": 80
+        "seatStatus": "booked",
+        "price": 50
+      },
+      {
+        "seatNumber": 3,
+        "seatType": "Standard",
+        "seatStatus": "booked",
+        "price": 50
+      },
+      {
+        "seatNumber": 4,
+        "seatType": "Standard",
+        "seatStatus": "booked",
+        "price": 50
       }
     ],
-    "totalPrice": 0,
-    "policy": "Non-refundable"
+    "vehicle": {
+      "id": "V001",
+      "name": "SuperBus A",
+      "type": "Bus",
+      "licensePlate": "HN-01A1234"
+    },
+    "totalPrice": 200,
+    "policy": "Free cancellation up to 24 hours before departure"
   },
   {
     "tripName": "Saigon to Phu Quoc",
@@ -38,11 +56,17 @@
       {
         "seatNumber": 2,
         "seatType": "Standard",
-        "seatStatus": "available",
+        "seatStatus": "booked",
         "price": 120
       }
     ],
-    "totalPrice": 0,
+    "vehicle": {
+      "id": "V002",
+      "name": "Luxury Ride",
+      "type": "Mini Bus",
+      "licensePlate": "SG-02B5678"
+    },
+    "totalPrice": 270,
     "policy": "Refundable"
   },
   {
@@ -55,7 +79,7 @@
       {
         "seatNumber": 1,
         "seatType": "VIP",
-        "seatStatus": "available",
+        "seatStatus": "booked",
         "price": 110
       },
       {
@@ -65,7 +89,13 @@
         "price": 90
       }
     ],
-    "totalPrice": 0,
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9012"
+    },
+    "totalPrice": 200,
     "policy": "Non-refundable"
   },
   {
@@ -88,6 +118,12 @@
         "price": 85
       }
     ],
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9013"
+    },
     "totalPrice": 0,
     "policy": "Refundable"
   },
@@ -111,6 +147,12 @@
         "price": 100
       }
     ],
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9014"
+    },
     "totalPrice": 0,
     "policy": "Non-refundable"
   },
@@ -134,6 +176,12 @@
         "price": 95
       }
     ],
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9015"
+    },
     "totalPrice": 0,
     "policy": "Refundable"
   },
@@ -157,6 +205,12 @@
         "price": 75
       }
     ],
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9016"
+    },
     "totalPrice": 0,
     "policy": "Non-refundable"
   },
@@ -180,6 +234,12 @@
         "price": 95
       }
     ],
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9017"
+    },
     "totalPrice": 0,
     "policy": "Refundable"
   },
@@ -203,6 +263,12 @@
         "price": 85
       }
     ],
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9018"
+    },
     "totalPrice": 0,
     "policy": "Non-refundable"
   },
@@ -226,6 +292,12 @@
         "price": 90
       }
     ],
+    "vehicle": {
+      "id": "V003",
+      "name": "Comfort Cruiser",
+      "type": "Coach",
+      "licensePlate": "DN-03C9019"
+    },
     "totalPrice": 0,
     "policy": "Refundable"
   }

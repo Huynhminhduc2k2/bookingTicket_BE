@@ -5,11 +5,16 @@ export interface IPayment {
   bookingInfo: {
     bookingId: any;
     depaturePlace: string;
-    arrival_place: string;
-    departure_time: Date;
-    arrival_time: Date;
+    arrivalPlace: string;
+    departureTime: Date;
+    arrivalTime: Date;
   };
-  user?: any;
+  user: {
+    id?: any;
+    email: string;
+    name: string;
+    phone: string;
+  };
   paymentMethod: string;
   paymentGateway: string;
   transactionId: string;
@@ -22,12 +27,18 @@ export interface IPayment {
 const paymentSchema = new Schema<IPayment>(
   {
     bookingInfo: { type: Object, required: true },
-    user: { type: Types.ObjectId, ref: "User", required: true },
+    user: {
+      id: { type: Types.ObjectId, ref: "User", required: false },
+      email: { type: String, required: true },
+      name: { type: String, required: true },
+      phone: { type: String, required: true },
+
+    },
     paymentMethod: { type: String, enum: paymentMethod, required: true, default: null },
     paymentGateway: { type: String, enum: paymentGateway, required: true, default: null },
     transactionId: { type: String, required: true, default: null },
     amount: { type: Number, required: true, default: 0 },
-    status: { type: String, enum: paymentStatus, required: true, default: paymentStatus.PENDING },
+    status: { type: String, enum: paymentStatus, required: true, default: paymentStatus[0] },
   },
   { timestamps: true },
 );
