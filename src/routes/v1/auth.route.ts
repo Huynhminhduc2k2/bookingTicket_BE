@@ -1,8 +1,8 @@
 import { login, register, logout } from "../../controllers/auth.controller";
 import auth from "../../middlewares/auth";
 import validate from "../../middlewares/validate";
-import express from "express";
-import * as authValidation from "../../validations/auth.validation";
+const express = require("express");
+const authValidation = require("../../validations/auth.validation");
 const authRoute = express.Router();
 
 authRoute.post("/register", validate(authValidation.register), register);

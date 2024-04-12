@@ -1,9 +1,9 @@
 import ApiError from "../utils/ApiError";
 
-import passport from "passport";
-import httpStatus from "http-status";
+const passport = require("passport");
+const httpStatus = require("http-status");
 
-import { roleRights } from "../config/roles";
+const { roleRights } = require("../config/roles");
 
 const verifyCallback =
   (req, resolve, reject, requiredRights) => async (err, user, info) => {
@@ -29,16 +29,16 @@ const verifyCallback =
 
 const auth =
   (...requiredRights) =>
-    async (req, res, next) => {
-      return new Promise((resolve, reject) => {
-        passport.authenticate(
-          "jwt",
-          { session: false },
-          verifyCallback(req, resolve, reject, requiredRights),
-        )(req, res, next);
-      })
-        .then(() => next())
-        .catch((err) => next(err));
-    };
+  async (req, res, next) => {
+    return new Promise((resolve, reject) => {
+      passport.authenticate(
+        "jwt",
+        { session: false },
+        verifyCallback(req, resolve, reject, requiredRights),
+      )(req, res, next);
+    })
+      .then(() => next())
+      .catch((err) => next(err));
+  };
 
 export default auth;

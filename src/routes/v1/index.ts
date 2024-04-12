@@ -2,7 +2,7 @@ import config from "../../config/config";
 import authRoute from "./auth.route";
 import tweetRoute from "./tweet.route";
 
-import express from "express";
+const express = require("express");
 
 const router = express.Router();
 
