@@ -1,37 +1,23 @@
 const paymentMethod = {
-    CREDIT_CARD: "credit_card",
-    DEBIT_CARD: "debit_card",
     ATM: "atm",
     E_WALLET: "e_wallet",
 };
 
-const paymentStatus = {
-    // Payment is created but not yet paid
-    PENDING: "pending",
-    // Payment is paid
-    PAID: "paid",
-    // Payment is refunded
-    REFUNDED: "refunded",
-    // Payment is failed
-    FAILED: "failed",
-    // Payment is cancelled
-    CANCELLED: "cancelled",
-    // Payment is expired
-    EXPIRED: "expired",
-    // Payment is refunded
-    REFUND: {
-        REQUESTED: "refund_requested",
-        FAILED: "refund_failed",
-        CANCELLED: "refund_cancelled",
-        EXPIRED: "refund_expired",
-        COMPLETED: "refund_completed",
-        PARTIAL: "refund_partial",
-        PROCESSING: "refund_processing",
-        WAITING: "refund_waiting",
-        REJECTED: "refund_rejected",
-        ACCEPTED: "refund_accepted",
-    }
-};
+const paymentStatus = [
+    'PENDING',
+    'PAID',
+    'REFUNDED',
+    'FAILED',
+    'CANCELLED',
+    'EXPIRED',
+    'REQUESTED',
+    'COMPLETED',
+    'PARTIAL',
+    'PROCESSING',
+    'WAITING',
+    'REJECTED',
+    'ACCEPTED',
+];
 
 const paymentGateway = {
     PAYPAL: "paypal",

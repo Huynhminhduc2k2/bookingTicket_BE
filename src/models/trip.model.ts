@@ -12,6 +12,12 @@ export interface ITrip {
     seatStatus: string;
     price: number;
   }[];
+  vehicle: {
+    id: string;
+    name: string;
+    type: string;
+    licensePlate: string;
+  };
   totalPrice: number;
   policy: string;
   createdAt: Date;
@@ -25,6 +31,12 @@ const tripSchema = new Schema<ITrip>(
     departureTime: { type: Date, required: true },
     arrivalTime: { type: Date, required: true },
     availableSeats: { type: Number, required: true },
+    vehicle: {
+      id: { type: String, required: true },
+      name: { type: String, required: true },
+      type: { type: String, required: true },
+      licensePlate: { type: String, required: true },
+    },
     seats: {
       type: [{
         seatNumber: { type: Number, required: true },

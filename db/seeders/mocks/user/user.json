@@ -1,7 +1,7 @@
 [
   {
     "email": "admin@gmail.com",
-    "password": "123456",
+    "password": "admin@gmail.com",
     "phone": "11234567890",
     "dob": "1990-01-01T00:00:00.000Z",
     "role": "admin"
@@ -23,7 +23,7 @@
     "job": "Graphic Designer",
     "dob": "1985-05-15T00:00:00.000Z",
     "avatar": "avatar2.jpg",
-    "role": "admin"
+    "role": "user"
   },
   {
     "email": "sam.smith@example.net",

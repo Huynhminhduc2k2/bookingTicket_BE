@@ -18,8 +18,7 @@
     "pretty:check": "prettier --check \"./**/*.{ts,tsx,js,jsx,json}\" --end-of-line lf",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts' --timeout 10000",
     "seed:init": "md-seed init",
-    "seed": "md-seed run",
-    "seed:drop": "md-seed run --drop"
+    "seed": "md-seed run -d"
   },
   "keywords": [],
   "author": "",
