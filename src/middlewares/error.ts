@@ -1,9 +1,9 @@
 import config from "../config/config";
 import Logger from "../utils/logger";
 import ApiError from "../utils/ApiError";
-import mongoose from "mongoose";
-import httpStatus from "http-status";
 
+const mongoose = require("mongoose");
+const httpStatus = require("http-status");
 const logger = new Logger();
 const errorConverter = (err: any, req: any, res: any, next: any,) => {
   let error = err;

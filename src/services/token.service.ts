@@ -6,7 +6,7 @@ import config from "../config/config";
 import Token from "../models/token.model";
 import ApiError from "../utils/ApiError";
 import * as userService from "./user.service";
-import { tokenTypes } from "../config/tokens";
+const { tokenTypes } = require("../config/tokens");
 
 /**
  * Generate token
@@ -34,12 +34,11 @@ const generateToken = (userId, type, secret = config.jwt.secret) => {
  * @param {boolean} [blacklisted]
  * @returns {Promise<Token>}
  */
-const saveToken = async (token, userId, type, expires, blacklisted = false) => {
+const saveToken = async (token, userId, type, blacklisted = false) => {
   const tokenDoc = await Token.create({
     token,
     user: userId,
     type,
-    expires,
     blacklisted,
   });
   return tokenDoc;
@@ -72,7 +71,7 @@ const verifyToken = async (token, type) => {
  */
 const generateAuthTokens = async (user) => {
   const accessToken = generateToken(user._id, tokenTypes.ACCESS);
-  await saveToken(accessToken, user._id, tokenTypes.ACCESS, null);
+  await saveToken(accessToken, user._id, tokenTypes.ACCESS);
   return accessToken;
 };
 
@@ -119,7 +118,7 @@ const generateVerifyEmailToken = async (user) => {
     expires,
     tokenTypes.VERIFY_EMAIL,
   );
-  await saveToken(verifyEmailToken, user.id, tokenTypes.VERIFY_EMAIL, expires);
+  await saveToken(verifyEmailToken, user.id, expires, tokenTypes.VERIFY_EMAIL);
   return verifyEmailToken;
 };
 

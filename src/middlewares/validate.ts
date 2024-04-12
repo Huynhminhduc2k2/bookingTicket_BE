@@ -1,7 +1,8 @@
 import ApiError from "../utils/ApiError";
 import pick from "../utils/pick";
-import Joi from "joi";
-import httpStatus from "http-status";
+
+const Joi = require("joi");
+const httpStatus = require("http-status");
 
 const validate = (schema) => (req, res, next) => {
   const validSchema = pick(schema, ["params", "query", "body"]);
