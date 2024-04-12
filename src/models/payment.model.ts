@@ -26,7 +26,13 @@ export interface IPayment {
 
 const paymentSchema = new Schema<IPayment>(
   {
-    bookingInfo: { type: Object, required: true },
+    bookingInfo: {
+      bookingId: { type: Types.ObjectId, ref: "Booking", required: true },
+      depaturePlace: { type: String, required: true },
+      arrivalPlace: { type: String, required: true },
+      departureTime: { type: Date, required: true },
+      arrivalTime: { type: Date, required: true },
+    },
     user: {
       id: { type: Types.ObjectId, ref: "User", required: false },
       email: { type: String, required: true },
