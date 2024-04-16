@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { TripsSeeder, UsersSeeder } from './db/seeders';
+import { TripsSeeder, UsersSeeder, BookingsSeeder, PaymentsSeeder, BillsSeeder} from './db/seeders';
 dotenv.config();
 const mongoURL = process.env.MONGODB_URL || 'mongodb://localhost:27017/dbname';
 console.log('mongoURL', mongoURL);
@@ -12,9 +12,9 @@ console.log('mongoURL', mongoURL);
 export const seedersList = {
   UsersSeeder, 
   TripsSeeder,
-  // PaymentsSeeder,
-  // BillsSeeder,
-  // BookingsSeeder
+  BookingsSeeder,
+  PaymentsSeeder,
+  BillsSeeder,
 };
 /**
  * Connect to mongodb implementation

@@ -1,5 +1,6 @@
 [
   {
+    "name": "Admin",
     "email": "admin@gmail.com",
     "password": "admin@gmail.com",
     "phone": "11234567890",
@@ -7,6 +8,7 @@
     "role": "admin"
   },
   {
+    "name": "John Doe",
     "email": "ducan172002@gmail.com",
     "password": "123456",
     "phone": "09876543210",
@@ -26,6 +28,7 @@
     "role": "user"
   },
   {
+    "name": "Sam Smith",
     "email": "sam.smith@example.net",
     "password": "123456",
     "phone": "12345678901",
@@ -40,6 +43,7 @@
     "role": "user"
   },
   {
+    "name": "Alex Jordan",
     "email": "alex.jordan@example.org",
     "password": "123456",
     "phone": "10987654321",
@@ -47,6 +51,7 @@
     "role": "user"
   },
   {
+    "name": "Casey Reyes",
     "email": "casey.reyes@example.com",
     "password": "123456",
     "phone": "13216549870",

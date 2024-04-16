@@ -8,14 +8,15 @@ import { roles } from "../config/roles";
 export interface IUser extends Document {
   email: string;
   phone: string;
+  name?: string;
   password: string;
   address: {
     address: string;
     address_name: string;
   };
-  job: string;
-  dob: Date;
-  avatar: string;
+  job?: string;
+  dob?: Date;
+  avatar?: string;
   role: string;
   isPasswordMatch: (password: string) => Promise<boolean>;
 }
@@ -27,6 +28,11 @@ interface UserModel extends Model<IUser> {
 
 const userSchema = new mongoose.Schema<IUser, UserModel>(
   {
+    name: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     email: {
       type: String,
       required: false,
