@@ -44,7 +44,7 @@ const paymentSchema = new Schema<IPayment>(
     paymentGateway: { type: String, enum: paymentGateway, required: true, default: null },
     transactionId: { type: String, required: true, default: null },
     amount: { type: Number, required: true, default: 0 },
-    status: { type: String, enum: paymentStatus, required: true, default: paymentStatus[0] },
+    status: { type: String, enum: paymentStatus, required: true, default: paymentStatus.PENDING },
   },
   { timestamps: true },
 );

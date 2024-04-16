@@ -3,21 +3,15 @@ const paymentMethod = {
     E_WALLET: "e_wallet",
 };
 
-const paymentStatus = [
-    'PENDING',
-    'PAID',
-    'REFUNDED',
-    'FAILED',
-    'CANCELLED',
-    'EXPIRED',
-    'REQUESTED',
-    'COMPLETED',
-    'PARTIAL',
-    'PROCESSING',
-    'WAITING',
-    'REJECTED',
-    'ACCEPTED',
-];
+const paymentStatus = {
+    PENDING: 'PENDING',
+    PROCESSING: 'PROCESSING',
+    PAID: 'PAID',
+    FAILED: 'FAILED',
+    CANCELLED: 'CANCELLED',
+    REFUNDED: 'REFUNDED',
+    EXPIRED: 'EXPIRED',
+};
 
 const paymentGateway = {
     PAYPAL: "paypal",
