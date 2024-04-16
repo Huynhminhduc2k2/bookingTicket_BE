@@ -7,8 +7,7 @@ export interface IBill {
     bookingId: any;
     route: string;
     price: string;
-    seat: Date;
-    user_id?: any;
+    userId?: any;
     user: {
       name: string;
       email: string;
@@ -39,8 +38,7 @@ const billSchema = new Schema<IBill>(
       bookingId: { type: Types.ObjectId, ref: "Booking", required: true },
       route: { type: String, required: true },
       price: { type: String, required: true },
-      seat: { type: Date, required: true },
-      user_id: { type: Types.ObjectId, ref: "User", required: true },
+      userId: { type: Types.ObjectId, ref: "User", required: true },
       user: {
         name: { type: String, required: true },
         email: { type: String, required: true },

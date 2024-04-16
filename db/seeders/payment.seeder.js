@@ -31,7 +31,7 @@ class PaymentsSeeder extends Seeder {
   _getRandomPaymentGateway(method) {
     const GATEWAYS = Object.values(paymentGateway);
     const ATM_GATEWAYS = [paymentGateway.ATM_DOMESTIC, paymentGateway.ATM_INTERNATIONAL];
-    const E_WALLET_GATEWAYS = [paymentGateway.MOMO, paymentGateway.ZALO_PAY, paymentGateway.SHOPPE_PAY, paymentGateway.VN_PAY, paymentGateway.FUTA_PAY];
+    const E_WALLET_GATEWAYS = [paymentGateway.MOMO, paymentGateway.ZALO_PAY, paymentGateway.SHOPEE_PAY, paymentGateway.VN_PAY, paymentGateway.FUTA_PAY];
     switch (method) {
       case paymentMethod.ATM:
         return ATM_GATEWAYS[Math.floor(Math.random() * ATM_GATEWAYS.length)];
