@@ -3,8 +3,8 @@ import authRoute from "./auth.route";
 import publicRoute from "./public.route";
 import tweetRoute from "./tweet.route";
 import billRoute from "./bill.route";
-
-
+import paymentRoute from "./payment.route";
+import ticketRoute from "./ticket.route";
 
 import express from "express";
 
@@ -26,7 +26,15 @@ const defaultRoutes = [
   {
     path: "/bill",
     route: billRoute,
-  }
+  },
+  {
+    path: "/payment",
+    route: paymentRoute,
+  },
+  {
+    path: "/ticket",
+    route: ticketRoute,
+  },
 ];
 
 const devRoutes = [];

@@ -70,7 +70,7 @@ const deleteBill = catchAsync(async (req, res) => {
   if (!bill) {
     return res
       .status(httpStatus.NOT_FOUND)
-      .send({ message: "Tweet not found" });
+      .send({ message: "bill not found" });
   } else {
     if (bill.booking.userId.toString() !== user._id.toString()) {
       return res
@@ -97,7 +97,7 @@ const updateBill = catchAsync(async (req, res) => {
   if (!billId) {
     res
       .status(httpStatus.BAD_REQUEST)
-      .send({ message: "tweet id is required" });
+      .send({ message: "bill id is required" });
   }
 
   const bill = await getBillById(billId);
@@ -140,9 +140,39 @@ const updateBill = catchAsync(async (req, res) => {
   }
 });
 
+const getBillInforByID = catchAsync(async (req, res) => {
+  const billId = req.params.id;
+
+  if (!billId) {
+      return res
+        .status(httpStatus.BAD_REQUEST)
+        .send({ message: "bill id is required" });
+    }
+
+    const bill = await getBillById(billId);
+    const user = req.user;
+
+    if (!bill) {
+      return res
+        .status(httpStatus.NOT_FOUND)
+        .send({ message: "bill not found" });
+    } else {
+      if (bill.booking.userId.toString() !== user._id.toString()) {
+        return res
+          .status(httpStatus.UNAUTHORIZED)
+          .send({ message: "Unauthorized" });
+      }
+      else {
+          return res.status(httpStatus.OK).send({ message: "success", bill });
+  }
+}
+});
+  
+
 export {
   createBill,
   deleteBill,
   getUserBill,
   updateBill,
+  getBillInforByID
 };

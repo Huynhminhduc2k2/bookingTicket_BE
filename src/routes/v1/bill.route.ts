@@ -2,14 +2,12 @@ import express from "express";
 import {
   createBill,
   deleteBill,
-//   getUserFeed,
   getUserBill,
-//   handleTweetLikeStatus,
   updateBill,
+  getBillInforByID,
 } from "../../controllers/bill.controller";
 import auth from "../../middlewares/auth";
-import validate from "../../middlewares/validate";
-import * as tweetValidations from "../../validations/tweet.validation";
+
 const billRoute = express.Router();
 
 billRoute.get("/",
@@ -17,10 +15,14 @@ billRoute.get("/",
     getUserBill
 );
 
+billRoute.get("/:id",
+    auth("bill"),
+    getBillInforByID
+);
+
 billRoute.post(
   "/create",
     auth("bill"),
-//   [auth("tweet"), validate(tweetValidations.createTweet)],
   createBill,
 );
 
@@ -31,7 +33,6 @@ deleteBill);
 billRoute.patch(
   "/:id",
   auth("bill"),
-//   [auth("tweet"), validate(tweetValidations.tweetUpdate)],
   updateBill,
 );
 
