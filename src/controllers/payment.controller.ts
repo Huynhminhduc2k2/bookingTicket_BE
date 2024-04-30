@@ -72,7 +72,7 @@ const deletePayment = catchAsync(async (req, res) => {
   if (!payment) {
     return res
       .status(httpStatus.NOT_FOUND)
-      .send({ message: "Tweet not found" });
+      .send({ message: "Payment not found" });
   } else {
     if (payment.user.id.toString() !== user._id.toString()) {
       return res
