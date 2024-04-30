@@ -53,6 +53,8 @@ const billSchema = new Schema<IBill>(
       paymentDate: { type: Date, required: true, default: null },
       paymentAmount: { type: Number, required: true, default: 0 },
     },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
   },
   { timestamps: true },
 );

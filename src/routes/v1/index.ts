@@ -2,6 +2,8 @@ import config from "../../config/config";
 import authRoute from "./auth.route";
 import publicRoute from "./public.route";
 import tweetRoute from "./tweet.route";
+import billRoute from "./bill.route";
+
 
 
 import express from "express";
@@ -21,6 +23,10 @@ const defaultRoutes = [
     path: "/tweet",
     route: tweetRoute,
   },
+  {
+    path: "/bill",
+    route: billRoute,
+  }
 ];
 
 const devRoutes = [];
