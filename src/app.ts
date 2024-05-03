@@ -17,7 +17,12 @@ import { authLimiter } from "./middlewares/rateLimiter";
 import { errorConverter, errorHandler } from "./middlewares/error";
 import { fileParser } from "express-multipart-file-parser";
 import routes from "./routes/v1";
-
+import client from "./config/elastic";
+client.ping().then(() => {
+  console.log("Elasticsearch client connected");
+}).catch((error) => {
+  console.error("Error connecting to Elasticsearch client:", error);
+});
 const app = express();
 
 app.use(successHandler);
