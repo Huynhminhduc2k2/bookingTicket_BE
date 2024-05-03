@@ -5,6 +5,7 @@ import { generateAuthTokens, removeToken } from "../services/token.service";
 
 const register = catchAsync(async (req, res) => {
   const user = await createUser(req.body);
+  console.log(req.body)
   const token = await generateAuthTokens(user);
 
   res
