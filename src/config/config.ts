@@ -9,6 +9,7 @@ const envVarsSchema = Joi.object()
     NODE_ENV: Joi.string()
       .valid("production", "development", "test")
       .required(),
+    ENABLE_CORS: Joi.boolean().default(false).description("Enable CORS"),
     PORT: Joi.number().default(3000),
     MONGODB_URL: Joi.string().required().description("Mongo DB url"),
     DB_NAME: Joi.string().required().description("DB Name"),
@@ -23,6 +24,11 @@ const envVarsSchema = Joi.object()
       .default(10)
       .description("minutes after which reset password token expires"),
     JWT_VERIFY_EMAIL_EXPIRATION_MINUTES: Joi.number().default(10),
+    ELASTIC_BASEURL: Joi.string().required().description("Elasticsearch URL"),
+    ELASTIC_INDEX: Joi.string().default("booking_ticket").description("Elasticsearch Index"),
+    ELASTIC_USERNAME: Joi.string().description("Elasticsearch username"),
+    ELASTIC_PASSWORD: Joi.string().allow("").description("Elasticsearch password"),
+    REDIS_URL: Joi.string().required().description("Redis URL"),
   })
   .unknown();
 
@@ -36,6 +42,7 @@ if (error) {
 
 const config = {
   env: envVars.NODE_ENV,
+  enableCors: envVars.ENABLE_CORS,
   port: envVars.PORT,
   mongoose: {
     url: envVars.MONGODB_URL,
@@ -53,6 +60,15 @@ const config = {
     resetPasswordExpirationMinutes:
       envVars.JWT_RESET_PASSWORD_EXPIRATION_MINUTES,
     verifyEmailExpirationMinutes: envVars.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES,
+  },
+  elastic: {
+    baseUrl: envVars.ELASTIC_BASEURL,
+    index: envVars.ELASTIC_INDEX,
+    username: envVars.ELASTIC_USERNAME,
+    password: envVars.ELASTIC_PASSWORD,
+  },
+  redis: {
+    url: envVars.REDIS_URL,
   },
 };
 
