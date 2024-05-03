@@ -1,6 +1,4 @@
 import * as httpStatus from "http-status";
-import Bill from "../models/bill.model";
-import { IUser } from "../models/user.model";
 import {
   deleteBillbyId,
   getBillById,
@@ -11,7 +9,7 @@ import {
 import catchAsync from "../utils/catchAsync";
 
 const createBill = catchAsync(async (req, res) => {
-  const {slug, booking, branch, payment } = req.body;
+  const { slug, booking, branch, payment } = req.body;
 
   // Creating the bill payload
   const billPayload = {
@@ -43,7 +41,7 @@ const createBill = catchAsync(async (req, res) => {
   await saveBill(billPayload);
 
   // Sending the response
-  res.status(httpStatus.OK).send({ message: "Bill created successfully"});
+  res.status(httpStatus.OK).send({ message: "Bill created successfully" });
 
 });
 
@@ -78,7 +76,7 @@ const deleteBill = catchAsync(async (req, res) => {
         .send({ message: "Unauthorized" });
     }
 
-     else {
+    else {
       await deleteBillbyId(billId);
       return res
         .status(httpStatus.OK)
@@ -90,10 +88,10 @@ const deleteBill = catchAsync(async (req, res) => {
 const updateBill = catchAsync(async (req, res) => {
   const billId = req.params.id;
 
-  const {slug, booking, branch, payment } = req.body;
+  const { slug, booking, branch, payment } = req.body;
 
   const user = req.user;
-  
+
   if (!billId) {
     res
       .status(httpStatus.BAD_REQUEST)
@@ -133,7 +131,7 @@ const updateBill = catchAsync(async (req, res) => {
     if (bill.booking.userId.toString() !== user._id.toString()) {
       res.status(httpStatus.UNAUTHORIZED).send({ message: "Unauthorized" });
     }
-     else {
+    else {
       await updateBillInforById(billId, billPayload);
       res.status(httpStatus.OK).send({ message: "Bill updated successfully" });
     }
@@ -144,30 +142,30 @@ const getBillInforByID = catchAsync(async (req, res) => {
   const billId = req.params.id;
 
   if (!billId) {
-      return res
-        .status(httpStatus.BAD_REQUEST)
-        .send({ message: "bill id is required" });
-    }
-
-    const bill = await getBillById(billId);
-    const user = req.user;
-
-    if (!bill) {
-      return res
-        .status(httpStatus.NOT_FOUND)
-        .send({ message: "bill not found" });
-    } else {
-      if (bill.booking.userId.toString() !== user._id.toString()) {
-        return res
-          .status(httpStatus.UNAUTHORIZED)
-          .send({ message: "Unauthorized" });
-      }
-      else {
-          return res.status(httpStatus.OK).send({ message: "success", bill });
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .send({ message: "bill id is required" });
   }
-}
+
+  const bill = await getBillById(billId);
+  const user = req.user;
+
+  if (!bill) {
+    return res
+      .status(httpStatus.NOT_FOUND)
+      .send({ message: "bill not found" });
+  } else {
+    if (bill.booking.userId.toString() !== user._id.toString()) {
+      return res
+        .status(httpStatus.UNAUTHORIZED)
+        .send({ message: "Unauthorized" });
+    }
+    else {
+      return res.status(httpStatus.OK).send({ message: "success", bill });
+    }
+  }
 });
-  
+
 
 export {
   createBill,

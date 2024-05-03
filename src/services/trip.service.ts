@@ -1,6 +1,4 @@
-import * as httpStatus from "http-status";
 import Trip from "../models/trip.model";
-import ApiError from "../utils/ApiError";
 
 /**
  * Create a Trip
@@ -37,8 +35,8 @@ const getTripByRoute = async (reqRoute) => {
 };
 
 
-const getAllTrips = async()=>{
-    return Trip.find();
-}
+const getAllTrips = async () => {
+  return Trip.find();
+};
 
-export {getAllTrips, getTripByRoute};
+export { getAllTrips, getTripByRoute };
