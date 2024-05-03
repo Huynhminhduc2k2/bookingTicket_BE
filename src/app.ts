@@ -17,7 +17,7 @@ import { authLimiter } from "./middlewares/rateLimiter";
 import { errorConverter, errorHandler } from "./middlewares/error";
 import { fileParser } from "express-multipart-file-parser";
 import routes from "./routes/v1";
-import elasticClent from "./config/elastic";
+import elasticClent, { createIndex } from "./config/elastic";
 import redisClient from "./config/redis";
 
 elasticClent.ping().then(() => {
@@ -25,6 +25,7 @@ elasticClent.ping().then(() => {
 }).catch((error) => {
   console.error("Error connecting to Elasticsearch client:", error);
 });
+createIndex();
 
 redisClient.ping().then(() => {
   console.log("Redis client connected");

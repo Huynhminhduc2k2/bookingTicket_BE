@@ -1,6 +1,33 @@
 import * as httpStatus from "http-status";
+import OTP from "../models/otp.model";
 import User from "../models/user.model";
 import ApiError from "../utils/ApiError";
+import otpGenerator from "otp-generator";
+
+const sendOTP = async (phone) => {
+  const otp = otpGenerator.generate(6, {
+    upperCaseAlphabets: false,
+    specialChars: false,
+  });
+  console.log("OTP sent: " + otp);
+  try {
+    await OTP.create({ phone, code: otp, expiredAt: Date.now() + 5 * 60 * 1000, status: "PENDING" });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+const isOTPMatch = async (phone, otp) => {
+  const otpDoc = await OTP.findOne({ phone, code: otp, status: "PENDING" });
+  if (otpDoc) {
+    otpDoc.status = "USED";
+    await otpDoc.save();
+    return true;
+  }
+  return false;
+};
 
 /**
  * Create a user
@@ -9,12 +36,13 @@ import ApiError from "../utils/ApiError";
  */
 
 const createUser = async (userBody) => {
-  if (await User.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken");
-  } else if (await User.isPhoneTaken(userBody.phone)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Phone already taken");
+  if (await User.isPhoneTaken(userBody.phone)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Số điện thoại đã được đăng ký");
   }
   const usr = await User.create(userBody);
+  if (sendOTP(usr.phone)) {
+    console.log("OTP Sent");
+  }
   return usr.toObject();
 };
 
@@ -34,6 +62,10 @@ const getUserById = async (id) => {
  */
 const getUserByEmail = async (email) => {
   return User.findOne({ email });
+};
+
+const getUserByPhone = async (phone) => {
+  return User.findOne({ phone });
 };
 
 const getUserByAddress = async (address) => {
@@ -82,4 +114,6 @@ export {
   deleteUserById,
   getUserByAddress,
   searchUsersByName,
+  getUserByPhone,
+  isOTPMatch,
 };
