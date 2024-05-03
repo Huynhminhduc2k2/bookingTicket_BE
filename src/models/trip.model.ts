@@ -53,6 +53,13 @@ const tripSchema = new Schema<ITrip, MongoosasticModel<ITrip>>(
   { timestamps: true },
 );
 
+// Pre-save hook to update availableSeats count
+tripSchema.pre<ITrip>("save", async function (next) {
+  const availableSeatsCount = this.seats.filter(seat => seat.seatStatus === "available").length;
+  this.availableSeats = availableSeatsCount;
+  next();
+});
+
 tripSchema.plugin(mongoosastic, {
   esClient: Client as any,
   index: process.env.ELASTIC_INDEX || "booking_ticket",

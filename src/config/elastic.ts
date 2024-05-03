@@ -21,7 +21,7 @@ const client = new Client({
 });
 
 // Assuming you have an Elasticsearch client instantiated as 'elasticsearchClient'
-const createIndex = async () => {
+export const createIndex = async () => {
     try {
         const indexExists = await client.indices.exists({
             index: config.elastic.index,
@@ -46,13 +46,5 @@ const createIndex = async () => {
         console.error("Error creating job index:", error);
     }
 };
-
-createIndex();
-
-// Register cleanup logic when the process exits
-process.on("exit", () => {
-    console.log("Exiting process. Closing Elasticsearch client.");
-    client.close(); // Close the Elasticsearch client
-});
 
 export default client;
