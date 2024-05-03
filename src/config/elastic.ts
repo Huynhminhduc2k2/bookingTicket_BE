@@ -1,6 +1,6 @@
 import { Client } from "@elastic/elasticsearch";
 import Logger from "../utils/logger";
-require("dotenv").config();
+import config from "./config";
 
 const logger = new Logger();
 if (!process.env.ELASTIC_BASEURL) {
@@ -9,14 +9,14 @@ if (!process.env.ELASTIC_BASEURL) {
     });
 }
 const client = new Client({
-    node: process.env.ELASTIC_BASEURL || "http://localhost:9200",
+    node: config.elastic.baseUrl || "http://localhost:9200",
     auth: {
-        username: process.env.ELASTIC_USERNAME || "elastic",
-        password: process.env.ELASTIC_PASSWORD || "",
+        username: config.elastic.username || "elastic",
+        password: config.elastic.password || "",
     },
     tls: {
-        ca: process.env.ELASTIC_CA_CERT || "",
-        rejectUnauthorized: false,
+        // ca: process.env.ELASTIC_CA_CERT || "",
+        // rejectUnauthorized: false,
     },
 });
 
@@ -24,12 +24,12 @@ const client = new Client({
 const createIndex = async () => {
     try {
         const indexExists = await client.indices.exists({
-            index: process.env.ELASTIC_INDEX || "booking_ticket",
+            index: config.elastic.index,
         });
 
         if (!indexExists) {
             await client.indices.create({
-                index: process.env.ELASTIC_INDEX || "booking_ticket",
+                index: config.elastic.index,
                 body: {
                     mappings: {
                         properties: {
