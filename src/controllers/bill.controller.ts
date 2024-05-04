@@ -7,6 +7,7 @@ import {
   updateBillInforById,
 } from "../services/bill.service";
 import catchAsync from "../utils/catchAsync";
+import redis from "../config/redis";
 
 const createBill = catchAsync(async (req, res) => {
   const { slug, booking, branch, payment } = req.body;
@@ -38,8 +39,9 @@ const createBill = catchAsync(async (req, res) => {
   };
 
   // Creating the bill document
-  await saveBill(billPayload);
-
+  const newBill = await saveBill(billPayload);
+  const sessionID = `bill:${newBill.booking.userId}:${newBill._id}`;
+  await redis.set(sessionID, JSON.stringify(newBill), "EX", 60);
   // Sending the response
   res.status(httpStatus.OK).send({ message: "Bill created successfully" });
 
@@ -48,7 +50,21 @@ const createBill = catchAsync(async (req, res) => {
 
 const getUserBill = catchAsync(async (req, res) => {
   const user = req.user;
+  const sessionID = "bills:" + user._id;
+  const cachedBills = await redis.get(sessionID, async (err, data) => {
+    if (err) {
+      console.error(err);
+    }
+    return data;
+  });
+
+  if (cachedBills) {
+    return res.status(httpStatus.OK).send({ message: "success", bills: JSON.parse(cachedBills) });
+  }
+
   const bills = await getUserBills(user._id);
+  await redis.set(sessionID, JSON.stringify(bills), "EX", 60);
+
   res.status(httpStatus.OK).send({ message: "success", bills });
 });
 
@@ -56,7 +72,7 @@ const deleteBill = catchAsync(async (req, res) => {
   const billId = req.params.id;
 
   const user = req.user;
-
+  const sessionID = `bill:${user._id}:${billId}`;
   if (!billId) {
     return res
       .status(httpStatus.BAD_REQUEST)
@@ -78,6 +94,7 @@ const deleteBill = catchAsync(async (req, res) => {
 
     else {
       await deleteBillbyId(billId);
+      await redis.del(sessionID);
       return res
         .status(httpStatus.OK)
         .send({ message: "Bill deleted successfully" });
@@ -91,6 +108,12 @@ const updateBill = catchAsync(async (req, res) => {
   const { slug, booking, branch, payment } = req.body;
 
   const user = req.user;
+
+  const sessionID = `bill:${user._id}:${billId}`;
+  await redis.del(sessionID);
+
+  const billsSessionID = "bills:" + user._id;
+  await redis.del(billsSessionID);
 
   if (!billId) {
     res
@@ -132,7 +155,8 @@ const updateBill = catchAsync(async (req, res) => {
       res.status(httpStatus.UNAUTHORIZED).send({ message: "Unauthorized" });
     }
     else {
-      await updateBillInforById(billId, billPayload);
+      const updatedBill = await updateBillInforById(billId, billPayload);
+      redis.set(sessionID, JSON.stringify(updatedBill), "EX", 60);
       res.status(httpStatus.OK).send({ message: "Bill updated successfully" });
     }
   }
@@ -140,6 +164,7 @@ const updateBill = catchAsync(async (req, res) => {
 
 const getBillInforByID = catchAsync(async (req, res) => {
   const billId = req.params.id;
+  const user = req.user;
 
   if (!billId) {
     return res
@@ -147,8 +172,18 @@ const getBillInforByID = catchAsync(async (req, res) => {
       .send({ message: "bill id is required" });
   }
 
+  const sessionID = `bill:${user._id}:${billId}`;
+  const cachedBill = await redis.get(sessionID, async (err, data) => {
+    if (err) {
+      console.error(err);
+    }
+    return data;
+  });
+  if (cachedBill) {
+    return res.status(httpStatus.OK).send({ message: "success", bill: JSON.parse(cachedBill) });
+  }
+
   const bill = await getBillById(billId);
-  const user = req.user;
 
   if (!bill) {
     return res
@@ -161,6 +196,7 @@ const getBillInforByID = catchAsync(async (req, res) => {
         .send({ message: "Unauthorized" });
     }
     else {
+      await redis.set(sessionID, JSON.stringify(bill), "EX", 60);
       return res.status(httpStatus.OK).send({ message: "success", bill });
     }
   }
