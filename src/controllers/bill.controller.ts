@@ -39,8 +39,9 @@ const createBill = catchAsync(async (req, res) => {
   };
 
   // Creating the bill document
-  await saveBill(billPayload);
-
+  const newBill = await saveBill(billPayload);
+  const sessionID = `bill:${newBill.booking.userId}:${newBill._id}`;
+  await redis.set(sessionID, JSON.stringify(newBill), "EX", 60);
   // Sending the response
   res.status(httpStatus.OK).send({ message: "Bill created successfully" });
 
@@ -71,7 +72,7 @@ const deleteBill = catchAsync(async (req, res) => {
   const billId = req.params.id;
 
   const user = req.user;
-
+  const sessionID = `bill:${user._id}:${billId}`;
   if (!billId) {
     return res
       .status(httpStatus.BAD_REQUEST)
@@ -93,6 +94,7 @@ const deleteBill = catchAsync(async (req, res) => {
 
     else {
       await deleteBillbyId(billId);
+      await redis.del(sessionID);
       return res
         .status(httpStatus.OK)
         .send({ message: "Bill deleted successfully" });
