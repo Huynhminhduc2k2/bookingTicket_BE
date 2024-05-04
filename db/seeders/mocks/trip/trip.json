@@ -9,26 +9,92 @@
       {
         "seatNumber": 1,
         "seatType": "Standard",
-        "seatStatus": "booked",
+        "seatStatus": "available",
         "price": 50
       },
       {
         "seatNumber": 2,
         "seatType": "Standard",
-        "seatStatus": "booked",
+        "seatStatus": "available",
         "price": 50
       },
       {
         "seatNumber": 3,
         "seatType": "Standard",
-        "seatStatus": "booked",
+        "seatStatus": "available",
         "price": 50
       },
       {
         "seatNumber": 4,
         "seatType": "Standard",
-        "seatStatus": "booked",
+        "seatStatus": "available",
         "price": 50
+      },
+      {
+        "seatNumber": 5,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 55
+      },
+      {
+        "seatNumber": 6,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 55
+      },
+      {
+        "seatNumber": 7,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 55
+      },
+      {
+        "seatNumber": 8,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 55
+      },
+      {
+        "seatNumber": 9,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 55
+      },
+      {
+        "seatNumber": 10,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 75
+      },
+      {
+        "seatNumber": 11,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 75
+      },
+      {
+        "seatNumber": 12,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 75
+      },
+      {
+        "seatNumber": 13,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 75
+      },
+      {
+        "seatNumber": 14,
+        "seatType": "VIP",
+        "seatStatus": "booked",
+        "price": 75
+      },
+      {
+        "seatNumber": 15,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 75
       }
     ],
     "vehicle": {
@@ -58,6 +124,12 @@
         "seatType": "Standard",
         "seatStatus": "booked",
         "price": 120
+      },
+      {
+        "seatNumber": 3,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 75
       }
     ],
     "vehicle": {
@@ -87,6 +159,114 @@
         "seatType": "Standard",
         "seatStatus": "available",
         "price": 90
+      },
+      {
+        "seatNumber": 3,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 90
+      },
+      {
+        "seatNumber": 4,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 90
+      },
+      {
+        "seatNumber": 5,
+        "seatType": "Standard",
+        "seatStatus": "booked",
+        "price": 90
+      },
+      {
+        "seatNumber": 6,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 90
+      },
+      {
+        "seatNumber": 7,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 120
+      },
+      {
+        "seatNumber": 8,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 120
+      },
+      {
+        "seatNumber": 9,
+        "seatType": "VIP",
+        "seatStatus": "booked",
+        "price": 120
+      },
+      {
+        "seatNumber": 10,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 120
+      },
+      {
+        "seatNumber": 11,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 95
+      },
+      {
+        "seatNumber": 12,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 95
+      },
+      {
+        "seatNumber": 13,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 130
+      },
+      {
+        "seatNumber": 14,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 130
+      },
+      {
+        "seatNumber": 15,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 130
+      },
+      {
+        "seatNumber": 16,
+        "seatType": "VIP",
+        "seatStatus": "booked",
+        "price": 130
+      },
+      {
+        "seatNumber": 17,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 95
+      },
+      {
+        "seatNumber": 18,
+        "seatType": "Standard",
+        "seatStatus": "available",
+        "price": 95
+      },
+      {
+        "seatNumber": 19,
+        "seatType": "VIP",
+        "seatStatus": "booked",
+        "price": 140
+      },
+      {
+        "seatNumber": 20,
+        "seatType": "VIP",
+        "seatStatus": "available",
+        "price": 140
       }
     ],
     "vehicle": {
