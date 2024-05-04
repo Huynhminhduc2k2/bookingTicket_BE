@@ -1,6 +1,8 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document } from "mongoose";
+import mongoosastic, { MongoosasticModel, MongoosasticDocument } from 'mongoosastic';
 import { seatType } from "../constant/trip";
-export interface ITrip {
+import { Client } from "@elastic/elasticsearch";
+export interface ITrip extends Document, MongoosasticDocument {
   tripName: string;
   route: string;
   departureTime: Date;
@@ -24,7 +26,7 @@ export interface ITrip {
   updatedAt: Date;
 }
 
-const tripSchema = new Schema<ITrip>(
+const tripSchema = new Schema<ITrip, MongoosasticModel<ITrip>>(
   {
     tripName: { type: String, required: true },
     route: { type: String, required: true },
@@ -51,6 +53,18 @@ const tripSchema = new Schema<ITrip>(
   { timestamps: true },
 );
 
-const Trip = model<ITrip>("Trip", tripSchema);
+// Pre-save hook to update availableSeats count
+tripSchema.pre<ITrip>("save", async function (next) {
+  const availableSeatsCount = this.seats.filter(seat => seat.seatStatus === "available").length;
+  this.availableSeats = availableSeatsCount;
+  next();
+});
+
+tripSchema.plugin(mongoosastic, {
+  esClient: Client as any,
+  index: process.env.ELASTIC_INDEX || "booking_ticket",
+});
+
+const Trip = model<ITrip, MongoosasticModel<ITrip>>("Trip", tripSchema);
 
 export default Trip;

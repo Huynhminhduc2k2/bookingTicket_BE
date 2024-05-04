@@ -94,13 +94,8 @@ Go to [https://nodejs.org/en/](https://nodejs.org/en/) and download the install
 ```bash
 yarn install
 ```
-### 3. Seed data
 
-```bash
-yarn seed
-``` 
-
-### 4. Start the project
+### 3. Start the project
 
 ```bash
 # Run in development mode
@@ -110,6 +105,12 @@ yarn dev
 yarn build
 yarn start
 ```
+
+### 4. Seed data
+
+```bash
+yarn seed
+``` 
 
 # Usage
 

@@ -1,5 +1,4 @@
 import * as httpStatus from "http-status";
-import Payment from "../models/payment.model";
 import { IUser } from "../models/user.model";
 import {
   deletePaymentbyId,
@@ -45,7 +44,7 @@ const createPayment = catchAsync(async (req, res) => {
   await savePayment(paymentPayload);
 
   // Sending the response
-  res.status(httpStatus.OK).send({ message: "Payment created successfully"});
+  res.status(httpStatus.OK).send({ message: "Payment created successfully" });
 
 });
 
@@ -80,7 +79,7 @@ const deletePayment = catchAsync(async (req, res) => {
         .send({ message: "Unauthorized" });
     }
 
-     else {
+    else {
       await deletePaymentbyId(paymentId);
       return res
         .status(httpStatus.OK)
@@ -117,27 +116,27 @@ const updatePayment = catchAsync(async (req, res) => {
   } else {
 
     // Creating the payment payload
-  const paymentPayload = {
-    bookingInfo,
-    user: {
-      id: user._id,
-      email: user.email,
-      name: user.name,
-      phone: user.phone,
-    },
-    paymentMethod,
-    paymentGateway,
-    transactionId,
-    amount,
-    status: status,
-    createdAt: payment.createdAt,
-    updatedAt: new Date(),
-  };
+    const paymentPayload = {
+      bookingInfo,
+      user: {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        phone: user.phone,
+      },
+      paymentMethod,
+      paymentGateway,
+      transactionId,
+      amount,
+      status: status,
+      createdAt: payment.createdAt,
+      updatedAt: new Date(),
+    };
 
     if (payment.user.id.toString() !== user._id.toString()) {
       res.status(httpStatus.UNAUTHORIZED).send({ message: "Unauthorized" });
     }
-     else {
+    else {
       await updatePaymentInforById(paymentId, paymentPayload);
       res.status(httpStatus.OK).send({ message: "Payment updated successfully" });
     }
@@ -148,30 +147,30 @@ const getPaymentInforByID = catchAsync(async (req, res) => {
   const paymentId = req.params.id;
 
   if (!paymentId) {
-      return res
-        .status(httpStatus.BAD_REQUEST)
-        .send({ message: "payment id is required" });
-    }
-
-    const payment = await getPaymentById(paymentId);
-    const user = req.user;
-
-    if (!payment) {
-      return res
-        .status(httpStatus.NOT_FOUND)
-        .send({ message: "payment not found" });
-    } else {
-      if (payment.user.id.toString() !== user._id.toString()) {
-        return res
-          .status(httpStatus.UNAUTHORIZED)
-          .send({ message: "Unauthorized" });
-      }
-      else {
-          return res.status(httpStatus.OK).send({ message: "success", payment });
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .send({ message: "payment id is required" });
   }
-}
+
+  const payment = await getPaymentById(paymentId);
+  const user = req.user;
+
+  if (!payment) {
+    return res
+      .status(httpStatus.NOT_FOUND)
+      .send({ message: "payment not found" });
+  } else {
+    if (payment.user.id.toString() !== user._id.toString()) {
+      return res
+        .status(httpStatus.UNAUTHORIZED)
+        .send({ message: "Unauthorized" });
+    }
+    else {
+      return res.status(httpStatus.OK).send({ message: "success", payment });
+    }
+  }
 });
-  
+
 
 export {
   createPayment,

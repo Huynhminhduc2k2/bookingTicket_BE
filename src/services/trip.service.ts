@@ -1,7 +1,6 @@
-import * as httpStatus from "http-status";
 import Trip from "../models/trip.model";
-import ApiError from "../utils/ApiError";
-
+import elastic from "../config/elastic";
+import config from "../config/config";
 /**
  * Create a Trip
  * @param {Object} userBody
@@ -37,8 +36,38 @@ const getTripByRoute = async (reqRoute) => {
 };
 
 
-const getAllTrips = async()=>{
-    return Trip.find();
-}
+const getAllTrips = async () => {
+  return Trip.find();
+};
 
-export {getAllTrips, getTripByRoute};
+const searchTrip = async (route, departureTime, ticketNumber = 1) => {
+  try {
+    const results = await elastic.search({
+      index: config.elastic.index,
+      body: {
+        query: {
+          bool: {
+            must: [
+              { match: { route } },
+              { match: { departureTime } },
+              { range: { availableSeats: { gte: ticketNumber } } },
+            ],
+            should: [
+              { match: { route } },
+              { match: { departureTime } },
+              { range: { availableSeats: { gte: ticketNumber } } },
+            ],
+            minimum_should_match: 1
+          },
+        }
+      }
+    });
+    return results.hits.hits;
+
+  } catch (error) {
+    console.error('Error while searching:', error);
+    throw error;
+  }
+};
+
+export { getAllTrips, getTripByRoute, searchTrip };
