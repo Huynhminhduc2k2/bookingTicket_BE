@@ -3,7 +3,7 @@ import { bookingStatus } from "../constant/booking";
 
 export interface IBooking {
   user: {
-    id: string;
+    id?: string;
     email: string;
     name: string;
     phone: string;
@@ -13,7 +13,7 @@ export interface IBooking {
     seats: number[];
   };
   totalPrice: number;
-  status: string;
+  status?: string;
 }
 
 const bookingSchema = new Schema<IBooking>(

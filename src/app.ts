@@ -19,6 +19,7 @@ import { fileParser } from "express-multipart-file-parser";
 import routes from "./routes/v1";
 import elasticClent, { createIndex } from "./config/elastic";
 import redisClient from "./config/redis";
+import { setupCronJob } from "./utils/cronjob";
 
 elasticClent.ping().then(() => {
   console.log("Elasticsearch client connected");
@@ -90,5 +91,6 @@ app.use(errorConverter);
 // handle error
 app.use(errorHandler);
 
+setupCronJob();
 // module.exports = app;
 export { app };
