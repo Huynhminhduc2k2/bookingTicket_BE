@@ -1,10 +1,12 @@
 import ApiError from "../utils/ApiError";
 import Ticket, { IBooking } from "../models/booking.model";
-import Trip from "../models/trip.model";
+import Trip, { ITrip } from "../models/trip.model";
 import httpStatus from "http-status";
 import { bookingStatus } from "../constant/booking";
 import { seatStatus } from "../constant/trip";
 import redis from "../config/redis";
+import elastic from "../config/elastic";
+import config from "../config/config";
 
 const getTicketById = async (id: string) => {
   return await Ticket.findById(id);
@@ -45,6 +47,7 @@ const createTicket = async (ticket: IBooking) => {
     }
     // Lưu thay đổi vào chuyến xe
     await trip.save();
+    await updateTripInforInSearchEngine(trip);
     // Tạo vé mới
     newTicket = await Ticket.create(ticket);
     ticket.status = bookingStatus.WAITING_PAYMENT;
@@ -68,6 +71,7 @@ const createTicket = async (ticket: IBooking) => {
         }
       }
       await trip.save();
+      await updateTripInforInSearchEngine(trip);
     }
     throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error);
   }
@@ -122,11 +126,24 @@ const cancelTicket = async (ticketId) => {
       }
     }
     await trip.save();
-    // Xóa vé
-    await Ticket.findByIdAndDelete(ticketId);
+    await updateTripInforInSearchEngine(trip);
+    await Ticket.findByIdAndUpdate(ticketId, { status: bookingStatus.CANCELLED });
   } catch (error) {
     throw new Error(error);
   }
+};
+
+const updateTripInforInSearchEngine = async (trip: ITrip) => {
+  await elastic.update({
+    index: config.elastic.index,
+    id: trip._id.toString(),
+    body: {
+      doc: {
+        seats: trip.seats,
+      },
+    },
+
+  });
 };
 
 export {
