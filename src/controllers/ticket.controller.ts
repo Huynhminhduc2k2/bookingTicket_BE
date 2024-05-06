@@ -15,7 +15,7 @@ const getUserTicket = catchAsync(async (req, res) => {
 
 const getTicketInforByID = catchAsync(async (req, res) => {
     const ticketId = req.params.id;
-
+    
     if (!ticketId) {
         return res
           .status(httpStatus.BAD_REQUEST)
@@ -30,14 +30,7 @@ const getTicketInforByID = catchAsync(async (req, res) => {
           .status(httpStatus.NOT_FOUND)
           .send({ message: "ticket not found" });
       } else {
-        if (ticket.user.id.toString() !== user._id.toString()) {
-          return res
-            .status(httpStatus.UNAUTHORIZED)
-            .send({ message: "Unauthorized" });
-        }
-        else {
             return res.status(httpStatus.OK).send({ message: "success", ticket });
-    }
 }
 });
     

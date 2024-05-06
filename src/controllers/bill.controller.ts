@@ -190,15 +190,8 @@ const getBillInforByID = catchAsync(async (req, res) => {
       .status(httpStatus.NOT_FOUND)
       .send({ message: "bill not found" });
   } else {
-    if (bill.booking.userId.toString() !== user._id.toString()) {
-      return res
-        .status(httpStatus.UNAUTHORIZED)
-        .send({ message: "Unauthorized" });
-    }
-    else {
       await redis.set(sessionID, JSON.stringify(bill), "EX", 60);
       return res.status(httpStatus.OK).send({ message: "success", bill });
-    }
   }
 });
 
