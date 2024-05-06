@@ -43,7 +43,7 @@ const createBill = catchAsync(async (req, res) => {
   const sessionID = `bill:${newBill.booking.userId}:${newBill._id}`;
   await redis.set(sessionID, JSON.stringify(newBill), "EX", 60);
   // Sending the response
-  res.status(httpStatus.OK).send({ message: "Bill created successfully" });
+  res.status(httpStatus.OK).send({ message: "Bill created successfully", bill: newBill });
 
 });
 
@@ -190,8 +190,8 @@ const getBillInforByID = catchAsync(async (req, res) => {
       .status(httpStatus.NOT_FOUND)
       .send({ message: "bill not found" });
   } else {
-      await redis.set(sessionID, JSON.stringify(bill), "EX", 60);
-      return res.status(httpStatus.OK).send({ message: "success", bill });
+    await redis.set(sessionID, JSON.stringify(bill), "EX", 60);
+    return res.status(httpStatus.OK).send({ message: "success", bill });
   }
 });
 
