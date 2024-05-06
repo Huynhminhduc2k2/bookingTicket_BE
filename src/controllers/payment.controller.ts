@@ -41,10 +41,10 @@ const createPayment = catchAsync(async (req, res) => {
   };
 
   // Creating the payment document
-  await savePayment(paymentPayload);
+  const payment = await savePayment(paymentPayload);
 
   // Sending the response
-  res.status(httpStatus.OK).send({ message: "Payment created successfully" });
+  res.status(httpStatus.OK).send({ message: "Payment created successfully", payment: payment });
 
 });
 
